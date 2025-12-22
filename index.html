@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Graph API Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span class="navbar-logo">f</span>
+            <span class="navbar-title">Facebook Graph API Explorer</span>
+        </div>
+        <div class="navbar-right" id="navbarProfile">
+            <!-- Profile picture and username will be injected here by JS if available -->
+        </div>
+    </nav>
+    <main>
+        <section class="input-section">
+            <input type="text" id="searchInput" placeholder="Enter Facebook User ID or 'me'">
+            <button id="searchBtn" class="btn btn-primary">Search</button>
+            <button id="loginBtn" class="btn btn-secondary">Login with Facebook</button>
+        </section>
+        <section id="loading" class="hidden" style="display:none;">Loading...</section>
+        <section id="error" class="error hidden"></section>
+        <section id="results" class="results-grid"></section>
+    </main>
+    <footer>
+        <p>Powered by Facebook Graph API</p>
+    </footer>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

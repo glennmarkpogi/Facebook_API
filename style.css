@@ -1,0 +1,311 @@
+/* Make images in user posts much bigger */
+.posts-card img {
+    max-width: 10000px;
+    max-height: 10000px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 2.5rem auto 2rem auto;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(24,119,242,0.13);
+}
+.likes-card {
+    width: 480px;
+    max-width: 480px;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+.posts-card {
+    grid-area: posts;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+        min-height: 2400px;
+        padding: 14rem 8rem 8rem 8rem;
+    margin-left: 0;
+    margin-right: 0;
+}
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f2f5;
+    min-height: 100vh;
+    color: #050505;
+}
+
+/* Top Navigation Bar */
+.navbar {
+    display: flex;
+    /* grid-template-areas: ... (not needed for navbar) */
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 0.5rem 2rem;
+    border-bottom: 1px solid #e4e6eb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar-logo {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #1877f2;
+    margin-right: 1rem;
+    font-family: 'Segoe UI', 'Inter', system-ui, Arial, sans-serif;
+    letter-spacing: -2px;
+}
+.navbar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1877f2;
+    letter-spacing: 0.5px;
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+.navbar-profile-pic {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.navbar-username {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: #050505;
+}
+.input-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1.5rem 0;
+}
+.btn {
+    padding: 0.6rem 1.3rem;
+    font-size: 1.08rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, box-shadow 0.18s;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(24,119,242,0.04);
+}
+.btn-primary {
+    background: #1877f2;
+    color: #fff;
+    border: 1px solid #1877f2;
+}
+.btn-primary:hover:not(:disabled) {
+    background: #166fe0;
+    box-shadow: 0 2px 8px rgba(24,119,242,0.10);
+}
+.btn-secondary {
+    background: #fff;
+    color: #1877f2;
+    border: 1px solid #1877f2;
+}
+.btn-secondary:hover:not(:disabled) {
+    background: #f0f2f5;
+    color: #166fe0;
+    box-shadow: 0 2px 8px rgba(24,119,242,0.10);
+}
+input[type="text"] {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    width: 270px;
+    border: 1.5px solid #e4e6eb;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.2s;
+    background: #fff;
+}
+input[type="text"]:focus {
+    border: 1.5px solid #1877f2;
+    background: #f0f2f5;
+}
+#error {
+    color: #b00020;
+    margin: 1rem auto;
+    max-width: 400px;
+    text-align: center;
+    font-weight: 500;
+}
+#loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #4267B2;
+    margin-top: 1rem;
+    display: none;
+}
+/* Three-column layout for results */
+/* Custom grid: profile left, friends right, posts/likes below friends */
+.results-grid {
+    display: grid;
+    grid-template-areas:
+        "profile friends"
+        "posts posts"
+        "likes likes";
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: min-content;
+    gap: 2rem 2.5rem;
+    margin: 2.5rem auto 2rem auto;
+    max-width: 1100px;
+    min-height: 300px;
+    align-items: flex-start;
+}
+.likes-card { grid-area: likes; }
+.posts-card { grid-area: posts; }
+
+
+.profile-card { grid-area: profile; }
+.friends-card { grid-area: friends; }
+.likes-card { grid-area: likes; }
+.posts-card { grid-area: posts; }
+
+
+@media (max-width: 900px) {
+    .results-grid {
+        grid-template-areas:
+            "profile"
+            "friends"
+            "likes"
+            "posts";
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .results-grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+@media (max-width: 900px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+.card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    min-width: 0;
+    max-width: 100%;
+    text-align: left;
+    margin-bottom: 2.2rem;
+    transition: box-shadow 0.18s, transform 0.18s;
+}
+.card:hover {
+    box-shadow: 0 4px 24px rgba(24,119,242,0.13);
+    transform: translateY(-2px) scale(1.01);
+}
+.card img {
+    max-width: 140px;
+    max-height: 140px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.card h2 {
+    margin: 0.5rem 0 0.2rem 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.card p {
+    margin: 0.2rem 0 0 0;
+    color: #555;
+    font-size: 1rem;
+}
+.card h3 {
+    margin-bottom: 1.1rem;
+    font-size: 1.25rem;
+    color: #1877f2;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-size: 1.08rem;
+}
+.card li {
+    margin-bottom: 1.1rem;
+    word-break: break-word;
+    background: #f6f7fa;
+    border-radius: 10px;
+    padding: 1rem 0.9rem 0.7rem 0.9rem;
+    box-shadow: 0 1px 4px rgba(66,103,178,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+}
+.card li i {
+    color: #1877f2;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.post-message, .post-story {
+    font-size: 1.08rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+    font-weight: 500;
+}
+.post-date {
+    color: #888;
+    font-size: 0.97rem;
+    margin-top: 0.4rem;
+}
+footer {
+    background: #fff;
+    color: #888;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+@media (max-width: 900px) {
+    #results {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .input-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.7rem;
+    }
+    .card {
+        min-width: 90vw;
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem;
+    }
+    #results {
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+        gap: 1rem;
+    }
+    
+    footer {
+        position: static;
+        font-size: 0.95rem;
+    }
+}
