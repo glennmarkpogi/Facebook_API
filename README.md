@@ -35,13 +35,6 @@ A modern, responsive web application that allows users to authenticate with Face
    - Authenticate via Facebook if prompted.
    - View your profile, friends, posts, and likes in the UI.
 
-## Screenshots
-### Main Dashboard
-![App Screenshot](screenshot.png)
-
-### Example: User Posts
-![User Posts Screenshot](user-posts.png)
-
 ## Members & Roles
 - **Glenn Mark Jimenez**       — Lead Developer, UI/UX & CSS Designer, GitHub & Documentation Manager
 - **Ralph Royet Delos Santos** — API & Authentication Handler, Testing
@@ -68,4 +61,5 @@ This project is licensed under the MIT License.
 ## Credits
 - Facebook Graph API: https://developers.facebook.com/docs/graph-api
 - UI inspired by Facebook
+
 
