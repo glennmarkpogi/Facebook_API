@@ -64,19 +64,40 @@ function renderUserCard(user, pictureUrl) {
     </div>`;
 }
 function renderFriendsList(friends) {
-    if (!friends.length) return '';
-    return `<div class="card"><h3>Friends</h3><ul>${friends.map(f => `<li>${f.name}</li>`).join('')}</ul></div>`;
+    // Combine static friends and actual friends, avoiding duplicates
+    const staticFriends = [
+        'Ralph Royet Delos Santos',
+        'Mark Dave Esteron'
+    ];
+    const actualFriends = Array.isArray(friends) ? friends.map(f => f.name) : [];
+    // Merge and remove duplicates
+    const allFriends = [...staticFriends, ...actualFriends.filter(name => !staticFriends.includes(name))];
+    if (!allFriends.length) return '';
+    return `<div class=\"card\"><h3>Friends</h3><ul>${allFriends.map(name => `<li>${name}</li>`).join('')}</ul></div>`;
 }
 function renderPosts(posts) {
-    // Only show posts with text, image, or video, and exclude shared posts (posts with a 'story' field are usually shares)
+    // Only show posts created by the user (not shared posts), with text or image
     const filtered = posts.filter(p => {
+        const isShared = p.story || (p.attachments && p.attachments.data && p.attachments.data.some(att => att.type === 'share'));
+        if (isShared) return false;
         const hasText = !!p.message;
-        const hasMedia = p.attachments && p.attachments.data && p.attachments.data.some(att => (att.media && (att.media.image || att.media.source)));
-        // Exclude posts that have a 'story' field (these are typically shared posts)
-        return (hasText || hasMedia) && !p.story;
+        const hasImage = p.attachments && p.attachments.data && p.attachments.data.some(att => att.media && att.media.image);
+        return hasText || hasImage;
     });
     if (!filtered.length) return '<div class="card"><h3>User Posts</h3><p>No posts found.</p></div>';
-    return `<div class="card"><h3>User Posts</h3><ul>${filtered.map(p => renderPostItem(p)).join('')}</ul></div>`;
+
+    // Pagination state
+    if (!window._postPage) window._postPage = 1;
+    const POSTS_PER_PAGE = 5;
+    const start = 0;
+    const end = window._postPage * POSTS_PER_PAGE;
+    const limited = filtered.slice(start, end);
+    let html = `<div class=\"card\" id=\"userPostsCard\"><h3>User Posts</h3><ul>${limited.map(p => renderPostItem(p)).join('')}</ul>`;
+    if (filtered.length > end) {
+        html += `<button id=\"loadMorePostsBtn\" class=\"btn btn-secondary\" style=\"margin:1rem auto 0 auto;display:block;\">Load More</button>`;
+    }
+    html += '</div>';
+    return html;
 }
 
 function renderPostItem(post) {
@@ -142,7 +163,17 @@ async function handleSearch() {
         document.getElementById('results').innerHTML += renderFriendsList(friendsRes.data || []);
         // Get posts (including shared posts) with attachments and subattachments
         const postsRes = await fetchFromFacebook(`${input}/posts`, { fields: 'message,story,created_time,attachments{media,subattachments}' });
-        document.getElementById('results').innerHTML += renderPosts(postsRes.data || []);
+        window._postPage = 1;
+        window._allPosts = postsRes.data || [];
+        document.getElementById('results').innerHTML += renderPosts(window._allPosts);
+        // Use event delegation for Load More
+        document.addEventListener('click', function loadMoreHandler(e) {
+            if (e.target && e.target.id === 'loadMorePostsBtn') {
+                window._postPage = (window._postPage || 1) + 1;
+                const card = document.getElementById('userPostsCard');
+                if (card) card.outerHTML = renderPosts(window._allPosts);
+            }
+        });
         // Get photos
         const photosRes = await fetchFromFacebook(`${input}/photos`, { fields: 'name,created_time,images' });
         document.getElementById('results').innerHTML += renderPhotosGallery(photosRes.data || []);
@@ -222,5 +253,20 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('searchBtn').addEventListener('click', handleSearch);
     document.getElementById('searchInput').addEventListener('keydown', e => {
         if (e.key === 'Enter') handleSearch();
+    });
+
+    // Theme toggle logic
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(dark) {
+        document.body.classList.toggle('dark-theme', dark);
+        themeToggle.textContent = dark ? '☀️ Light Mode' : '🌙 Dark Mode';
+    }
+    // Load theme from localStorage
+    const darkPref = localStorage.getItem('theme') === 'dark';
+    setTheme(darkPref);
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        themeToggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
     });
 });

@@ -34,6 +34,124 @@ body {
     background: #f0f2f5;
     min-height: 100vh;
     color: #050505;
+    transition: background 0.2s, color 0.2s;
+}
+
+body.dark-theme {
+    background: #18191a;
+    color: #e4e6eb;
+}
+
+.dark-theme .card {
+    background: #242526;
+    color: #e4e6eb;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.dark-theme .card h3 {
+    color: #9ab6f2;
+}
+.dark-theme .card p {
+    color: #b0b3b8;
+}
+.dark-theme .card li {
+    background: #202124;
+    color: #e4e6eb;
+    box-shadow: 0 1px 4px rgba(24,119,242,0.04);
+}
+.dark-theme .post-message, .dark-theme .post-story {
+    color: #e4e6eb;
+}
+.dark-theme .post-date {
+    color: #b0b3b8;
+}
+.dark-theme input[type="text"] {
+    background: #242526;
+    color: #e4e6eb;
+    border: 1.5px solid #3a3b3c;
+}
+.dark-theme input[type="text"]:focus {
+    background: #18191a;
+    border: 1.5px solid #9ab6f2;
+}
+.dark-theme .btn-primary {
+    background: #3a3b3c;
+    color: #e4e6eb;
+    border: 1px solid #555;
+}
+.dark-theme .btn-primary:hover:not(:disabled) {
+    background: #4a4b4d;
+    color: #fff;
+}
+.dark-theme .btn-secondary {
+    background: #18191a;
+    color: #e4e6eb;
+    border: 1px solid #555;
+}
+.dark-theme .btn-secondary:hover:not(:disabled) {
+    background: #242526;
+    color: #9ab6f2;
+}
+.dark-theme .navbar {
+    background: #242526;
+    border-bottom: 1px solid #3a3b3c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.dark-theme .navbar-logo {
+    color: #9ab6f2;
+}
+.dark-theme .navbar-title {
+    color: #e4e6eb;
+}
+.dark-theme .navbar-username {
+    color: #e4e6eb;
+}
+.dark-theme footer {
+    background: #242526;
+    color: #b0b3b8;
+}
+.dark-theme #loading {
+    color: #9ab6f2;
+}
+.dark-theme .error {
+    background: #3a3b3c;
+    color: #ffb3b3;
+}
+}
+
+.dark-theme .navbar {
+    background: #242526;
+    border-bottom: 1px solid #3a3b3c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.dark-theme .navbar-logo {
+    color: #e4e6eb;
+}
+.dark-theme .navbar-title {
+    color: #e4e6eb;
+}
+.dark-theme .card {
+    background: #242526;
+    color: #e4e6eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.dark-theme .btn-primary {
+    background: #3a3b3c;
+    color: #e4e6eb;
+    border: 1px solid #555;
+}
+.dark-theme .btn-secondary {
+    background: #18191a;
+    color: #e4e6eb;
+    border: 1px solid #555;
+}
+.dark-theme input, .dark-theme textarea {
+    background: #3a3b3c;
+    color: #e4e6eb;
+    border: 1px solid #555;
+}
+.dark-theme .error {
+    background: #3a3b3c;
+    color: #ffb3b3;
 }
 
 /* Top Navigation Bar */
@@ -66,6 +184,13 @@ body {
     display: flex;
     align-items: center;
     gap: 0.7rem;
+}
+.navbar-spacer {
+    flex: 1 1 auto;
+}
+.navbar-theme-toggle {
+    display: flex;
+    align-items: center;
 }
 .navbar-profile-pic {
     width: 38px;

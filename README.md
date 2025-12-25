@@ -16,7 +16,7 @@ A modern, responsive web application that allows users to authenticate with Face
 ## Instructions to Run the Project
 1. **Clone this repository:**
    ```sh
-   git clone https://github.com/glennmarkpogi/Facebook_API.git
+   git clone https://github.com/yourusername/Facebook_API.git
    cd Facebook_API
    ```
 2. **Configure Facebook App credentials:**
@@ -43,9 +43,9 @@ A modern, responsive web application that allows users to authenticate with Face
 ![User Posts Screenshot](user-posts.png)
 
 ## Members & Roles
-- **Glenn Mark Jimenez** — Lead Developer, UI/UX
-- **Zed Lee** — API Integration, Testing
-- *(Add more members and roles as needed)*
+- **Glenn Mark Jimenez**       — Lead Developer, UI/UX & CSS Designer, GitHub & Documentation Manager
+- **Ralph Royet Delos Santos** — API & Authentication Handler, Testing
+- **Mark Dave Esteron**        — JavaScript Logic / Data Processing
 
 ## Technologies Used
 - HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+)
@@ -68,5 +68,3 @@ This project is licensed under the MIT License.
 ## Credits
 - Facebook Graph API: https://developers.facebook.com/docs/graph-api
 - UI inspired by Facebook
-
-
