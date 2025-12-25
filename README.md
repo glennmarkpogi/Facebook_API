@@ -16,7 +16,7 @@ A modern, responsive web application that allows users to authenticate with Face
 ## Instructions to Run the Project
 1. **Clone this repository:**
    ```sh
-   git clone https://github.com/glennmarkpogi/Facebook_API.git
+   git clone https://github.com/yourusername/Facebook_API.git
    cd Facebook_API
    ```
 2. **Configure Facebook App credentials:**
@@ -68,4 +68,3 @@ This project is licensed under the MIT License.
 ## Credits
 - Facebook Graph API: https://developers.facebook.com/docs/graph-api
 - UI inspired by Facebook
-
