@@ -52,7 +52,7 @@ A modern, responsive web application that allows users to authenticate with Face
 ├── README.md
 ```
 ## Screenshot
-![App Screenshot](screenshot.png)
+![App Screenshot](screenshot.jpeg)
 
 ## Security
 - API keys and tokens are not committed to the repository. Use placeholders in public code.
@@ -63,6 +63,7 @@ This project is licensed under the MIT License.
 ## Credits
 - Facebook Graph API: https://developers.facebook.com/docs/graph-api
 - UI inspired by Facebook
+
 
 
 
